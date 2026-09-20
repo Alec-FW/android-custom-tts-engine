@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Declared via <meta-data android:name="android.speech.tts.engine"
+  on the TTS service. The system reads the android:settingsActivity
+  attribute from this <tts-engine> tag (root tag name is checked
+  literally by TtsEngines.settingsActivityFromServiceInfo) to decide
+  whether to show the gear icon for this engine in the system TTS
+  settings, and where it leads.
+-->
+<tts-engine xmlns:android="http://schemas.android.com/apk/res/android"
+    android:description="@string/tts_engine_description"
+    android:icon="@mipmap/ic_launcher"
+    android:settingsActivity="com.example.CustomTts.MainActivity">
+</tts-engine>

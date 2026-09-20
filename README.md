@@ -20,6 +20,7 @@ This allows you to use custom, self-hosted, or cloud TTS voices — powered by [
 * **Quick-fill presets** for AllTalk (local) and OpenAI Cloud.
 * **Direct link** to Android TTS engine selection from the main screen.
 * Settings are persisted locally using Jetpack DataStore.
+* Supports streaming mode (tested with [qwentts.cpp](https://github.com/ServeurpersoCom/qwentts.cpp))
 
 ---
 
@@ -84,5 +85,4 @@ Tap **Save**.
 ## Future Work / TODO
 
 * MP3 / Opus decoding support.
-* Implement `onStop()` to cancel ongoing network requests.
 * More sophisticated language/voice mapping.

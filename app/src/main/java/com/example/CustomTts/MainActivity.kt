@@ -1,4 +1,4 @@
-package com.example.CustomTts // Passe Paketnamen an
+package com.example.CustomTts // Adjust package names
 
 import android.content.Intent
 import android.os.Bundle
@@ -15,35 +15,42 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.CustomTts.R
 import com.example.CustomTts.ui.SettingsScreen
 import com.example.CustomTts.ui.theme.DummyTTSTheme
 
 class MainActivity : ComponentActivity() {
+    // Instance-level so onNewIntent can also flip it (the system gear
+    // button launches this activity even when it is already running).
+    private val showSettingsState = mutableStateOf(false)
+
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // The gear button in the system TTS settings sends an explicit
+        // intent (setClassName, action == null); the launcher sends
+        // ACTION_MAIN. So: show the settings screen unless we were
+        // launched from the launcher.
+        showSettingsState.value = intent?.action != Intent.ACTION_MAIN
 
         setContent {
             DummyTTSTheme {
-
-                var showSettings by remember { mutableStateOf(false) }
+                var showSettings by showSettingsState
 
                 if (showSettings) {
                     SettingsScreen(
                         onNavigateBack = { showSettings = false }
                     )
                 } else {
-                    // Hauptbildschirm mit String-Ressourcen
+                    // Main screen using string resources
                     Scaffold(
                         topBar = {
                             TopAppBar(
-                                title = { Text(stringResource(id = R.string.main_title)) }, // Geändert
+                                title = { Text(stringResource(id = R.string.main_title)) }, // Changed
                                 actions = {
                                     IconButton(onClick = { showSettings = true }) {
                                         Icon(
                                             imageVector = Icons.Filled.Settings,
-                                            contentDescription = stringResource(id = R.string.main_settings_action_description) // Geändert
+                                            contentDescription = stringResource(id = R.string.main_settings_action_description) // Changed
                                         )
                                     }
                                 }
@@ -71,14 +78,19 @@ class MainActivity : ComponentActivity() {
                                 Text("Open Android TTS Settings")
                             }
                         }
-                    } // Ende Scaffold (Hauptinhalt)
-                } // Ende else (Hauptinhalt)
-            } // Ende Theme
-        } // Ende setContent
-    } // Ende onCreate
+                    } // End Scaffold (main content)
+                } // End else (main content)
+            } // End Theme
+        } // End setContent
+    } // End onCreate
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        showSettingsState.value = intent.action != Intent.ACTION_MAIN
+    }
 }
 
-// Preview mit String-Ressourcen
+// Preview using string resources
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview(showBackground = true)
 @Composable
@@ -87,10 +99,10 @@ fun MainScreenPreview() {
         Scaffold(
             topBar = {
                 TopAppBar(
-                    title = { Text(stringResource(id = R.string.main_title)) }, // Geändert
+                    title = { Text(stringResource(id = R.string.main_title)) }, // Changed
                     actions = {
-                        IconButton(onClick = { /* Vorschau: keine Aktion */ }) {
-                            Icon(Icons.Filled.Settings, contentDescription = stringResource(id = R.string.main_settings_action_description)) // Geändert
+                        IconButton(onClick = { /* Preview: no action */ }) {
+                            Icon(Icons.Filled.Settings, contentDescription = stringResource(id = R.string.main_settings_action_description)) // Changed
                         }
                     }
                 )
@@ -101,9 +113,9 @@ fun MainScreenPreview() {
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Text(stringResource(id = R.string.main_screen_text_1)) // Geändert
+                Text(stringResource(id = R.string.main_screen_text_1)) // Changed
                 Spacer(modifier = Modifier.height(20.dp))
-                Text(stringResource(id = R.string.main_screen_text_2)) // Geändert
+                Text(stringResource(id = R.string.main_screen_text_2)) // Changed
             }
         }
     }

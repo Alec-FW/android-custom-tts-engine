@@ -18,13 +18,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--            android:permission="android.permission.BIND_TEXT_TO_SPEECH"-->
+        <!-- Intentionally NOT set: it made the engine unusable (clients could not bind). -->
         <service
             android:name=".CustomTtsService" android:label="@string/tts_engine_label" android:exported="true"
-            android:permission="android.permission.BIND_TEXT_TO_SPEECH_SERVICE"
             tools:ignore="ExportedService"> <intent-filter>
             <action android:name="android.intent.action.TTS_SERVICE" />
             <category android:name="android.intent.category.DEFAULT" />
         </intent-filter>
+            <meta-data
+                android:name="android.speech.tts"
+                android:resource="@xml/tts_engine" />
         </service>
     </application>
 </manifest>

@@ -1,8 +1,8 @@
-package com.example.CustomTts.ui.theme // Passe Paketnamen an!
+package com.example.CustomTts.ui.theme // Adjust the package name!
 
 import androidx.compose.ui.graphics.Color
 
-// Beispiel-Farben für Material 3 (ähnlich wie Standard-Template)
+// Example colors for Material 3 (similar to the standard template)
 val Purple80 = Color(0xFFD0BCFF)
 val PurpleGrey80 = Color(0xFFCCC2DC)
 val Pink80 = Color(0xFFEFB8C8)

@@ -1,5 +1,5 @@
 [versions]
-agp = "8.9.1"
+agp = "8.13.2"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
@@ -7,7 +7,7 @@ appcompat = "1.7.0"
 material = "1.12.0"
 activity = "1.8.0"
 constraintlayout = "2.1.4"
-kotlin = "2.1.20"
+kotlin = "2.4.20"
 coreKtx = "1.16.0"
 androidxComposeCompiler = "2.0.20"
 
@@ -24,6 +24,6 @@ core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx"
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version = "2.0.20" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" } # Beispiel
 androidx-compose-compiler = { id = "androidx.compose.compiler.plugins.kotlin", version.ref = "androidxComposeCompiler" }

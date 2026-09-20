@@ -7,14 +7,21 @@ plugins {
     kotlin("plugin.serialization") version "1.9.23" // Behalte die Version hier oder verwalte sie auch zentral
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.compose.compiler)
-    //id("org.jetbrains.kotlin.plugin.compose") version "2.0.20"
+    // id("org.jetbrains.kotlin.plugin.compose") version "2.0.20"
     // Optional: Wenn du KSP für Room verwendest (war im Originalprojekt)
     // alias(libs.plugins.ksp)
+    id("org.jlleitschuh.gradle.ktlint") version "11.6.1"
 }
 
 android {
     namespace = "com.example.CustomTts"
     compileSdk = 35
+
+    testOptions {
+        // Let android.util.Log & co. return default values in JVM unit tests
+        // (the WAV parser logs a warning for unsupported formats).
+        unitTests.isReturnDefaultValues = true
+    }
 
     defaultConfig {
         applicationId = "com.example.CustomTts"
@@ -90,7 +97,7 @@ dependencies {
 
     // ---- Deine hinzugefügten Abhängigkeiten (Bleiben) ----
     // Ktor Client
-    val ktorVersion = "2.3.12" // Oder aktuellste Version prüfen
+    val ktorVersion = "3.5.2"
     implementation("io.ktor:ktor-client-core:$ktorVersion")
     implementation("io.ktor:ktor-client-cio:$ktorVersion")
     implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
@@ -124,5 +131,4 @@ dependencies {
 
     // AndroidTest Implementierungen für Compose
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
-
 }

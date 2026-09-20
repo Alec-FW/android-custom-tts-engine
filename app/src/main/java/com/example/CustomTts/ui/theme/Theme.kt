@@ -1,4 +1,4 @@
-package com.example.CustomTts.ui.theme // Passe Paketnamen an!
+package com.example.CustomTts.ui.theme // Adjust the package name!
 
 import android.app.Activity
 import android.os.Build
@@ -15,21 +15,21 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
-// Definition der Farbschemata
+// Definition of the color schemes
 private val DarkColorScheme = darkColorScheme(
     primary = Purple80,
     secondary = PurpleGrey80,
     tertiary = Pink80
-    // Füge hier bei Bedarf weitere Farbdefinitionen hinzu
+    // Add further color definitions here as needed
 )
 
 private val LightColorScheme = lightColorScheme(
     primary = Purple40,
     secondary = PurpleGrey40,
     tertiary = Pink40
-    // Füge hier bei Bedarf weitere Farbdefinitionen hinzu
+    // Add further color definitions here as needed
 
-    /* Andere Standardfarben zum Überschreiben
+    /* Other standard colors to override
     background = Color(0xFFFFFBFE),
     surface = Color(0xFFFFFBFE),
     onPrimary = Color.White,
@@ -40,11 +40,11 @@ private val LightColorScheme = lightColorScheme(
     */
 )
 
-// Die Haupt-Theme-Funktion
+// The main theme function
 @Composable
-fun DummyTTSTheme( // <<-- DIES IST DEIN NEUER THEME-NAME
+fun DummyTTSTheme( // <<-- THIS IS YOUR NEW THEME NAME
     darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamische Farben (Material You) sind auf Android 12+ verfügbar
+    // Dynamic colors (Material You) are available on Android 12+
     dynamicColor: Boolean = true,
     content: @Composable () -> Unit
 ) {
@@ -57,20 +57,20 @@ fun DummyTTSTheme( // <<-- DIES IST DEIN NEUER THEME-NAME
         else -> LightColorScheme
     }
 
-    // Setzt die Farben der Systemleisten (Statusleiste etc.) passend zum Theme
+    // Sets the system bar (status bar etc.) colors to match the theme
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
-            window.statusBarColor = colorScheme.primary.toArgb() // Beispiel: Primärfarbe
+            window.statusBarColor = colorScheme.primary.toArgb() // Example: primary color
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = !darkTheme
         }
     }
 
-    // Wendet das MaterialTheme an
+    // Applies the MaterialTheme
     MaterialTheme(
         colorScheme = colorScheme,
-        typography = Typography, // Verwendet die Typografie aus Type.kt
-        content = content // Hier wird der Inhalt deiner App gerendert
+        typography = Typography, // Uses the typography from Type.kt
+        content = content // This is where the content of your app is rendered
     )
 }

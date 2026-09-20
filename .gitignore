@@ -13,3 +13,8 @@
 .externalNativeBuild
 .cxx
 local.properties
+*.*~
+*.swp
+/.agents
+/.kotlin
+/.extra_resources
