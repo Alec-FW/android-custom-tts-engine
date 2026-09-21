@@ -16,13 +16,31 @@ This allows you to use custom, self-hosted, or cloud TTS voices — powered by [
     * API Key (optional, stored locally, input masked)
     * TTS Model
     * TTS Voice
-    * Response Format (wav / mp3 / opus / pcm)
+    * Response Format (wav / pcm)
 * **Quick-fill presets** for AllTalk (local) and OpenAI Cloud.
 * **Direct link** to Android TTS engine selection from the main screen.
 * Settings are persisted locally using Jetpack DataStore.
 * Supports streaming mode (tested with [qwentts.cpp](https://github.com/ServeurpersoCom/qwentts.cpp))
 
 ---
+
+## Note on this fork
+
+This is a fork of [marsPRE/android-custom-tts-engine](https://github.com/marsPRE/android-custom-tts-engine), 
+but from main logic part of the code (CustomTtsService.kt) very little remains.
+
+Main distinction from original is that this version supports streaming, which reduces delay before
+audio starts playing to well under 1s (for [qwentts.cpp](https://github.com/ServeurpersoCom/qwentts.cpp) running locally on measly 4060 I see 
+delays reliably under 0.5s! Feels pretty much instantaneous.)
+
+I also added extra fields in settings to allow manual override for seed and temperature for servers
+that allow it. 
+
+*Disclaimer: the changes were made mostly by qwen3.8-27b (with my relentless ~nagging~ prompting). 
+I did read through the code and did some manual cleaning up, but by and large it's generated. 
+I'm using it with locally run Qwen3-TTS and various Android devices and so far it works very well.*
+
+*Still. Use at your own risk. You have been warned.*
 
 ## Setup
 
