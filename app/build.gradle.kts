@@ -5,7 +5,6 @@
 plugins {
     alias(libs.plugins.android.application)
     kotlin("plugin.serialization") version "1.9.23" // Behalte die Version hier oder verwalte sie auch zentral
-    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.compose.compiler)
     // id("org.jetbrains.kotlin.plugin.compose") version "2.0.20"
     // Optional: Wenn du KSP für Room verwendest (war im Originalprojekt)
@@ -52,21 +51,12 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-    // Korrigierte Kotlin Options auf JVM Target 17
-    kotlinOptions {
-        jvmTarget = "17"
-    }
-
     // Build Features für Compose aktivieren
     buildFeatures {
         compose = true
     }
 
-    // Compose Options mit korrekter Compiler Version hinzufügen
     composeOptions {
-        // Korrekte Compiler-Version für Kotlin 2.0.x (Annahme: Kotlin 2.0.21 wird verwendet)
-        // Prüfe die Kompatibilitätstabelle für deine exakte Kotlin-Version!
-        kotlinCompilerExtensionVersion = "2.0.20" // Z.B. für Kotlin 2.0.0 / 2.0.21
     }
 
     // Packaging Options hinzufügen (verhindert manchmal Build-Fehler)
